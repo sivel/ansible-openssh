@@ -1,0 +1,20 @@
+---
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: default.yml
+  when: loaded_os_family|default(False) == False
+
+- name: Configure SSHd
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    group: root
+    owner: root
+    mode: 0600
+  notify:
+    - Restart SSHd
+  when: loaded_os_family|default(False) != False
