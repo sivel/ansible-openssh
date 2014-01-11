@@ -6,7 +6,7 @@
   when: ansible_os_family == 'RedHat'
 
 - include: default.yml
-  when: loaded_os_family|default(False) == False
+  when: openssh_loaded_os_family|default(False) == False
 
 - name: Configure SSHd
   template:
@@ -17,7 +17,7 @@
     mode: 0600
   notify:
     - Restart SSHd
-  when: loaded_os_family|default(False) != False
+  when: openssh_loaded_os_family|default(False) != False
 
 - name: Ensure SSHd is configured to start on boot
   service:

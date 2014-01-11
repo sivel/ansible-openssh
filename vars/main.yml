@@ -1,5 +1,5 @@
 ---
-loaded_os_family: False
+openssh_loaded_os_family: False
 
 opensshd_init_name:
   Debian: ssh

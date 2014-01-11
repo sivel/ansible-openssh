@@ -1,7 +1,7 @@
 ---
-- name: Debian | Set loaded_os_family
+- name: Debian | Set openssh_loaded_os_family
   set_fact:
-    loaded_os_family: "{{ ansible_os_family }}"
+    openssh_loaded_os_family: "{{ ansible_os_family }}"
 
 - name: Debian | Ensure OpenSSH is installed
   apt:
