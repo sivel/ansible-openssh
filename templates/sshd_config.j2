@@ -112,14 +112,6 @@ KexAlgorithms {{ opensshd_KexAlgorithms|join(',') }}
 
 KeyRegenerationInterval {{ opensshd_KeyRegenerationInterval }}
 
-{% if opensshd_ListenAddress is string %}
-ListenAddress {{ opensshd_ListenAddress }}
-{% else %}
-{% for address in opensshd_ListenAddress %}
-ListenAddress {{ address }}
-{% endfor %}
-{% endif %}
-
 LoginGraceTime {{ opensshd_LoginGraceTime }}
 
 LogLevel {{ opensshd_LogLevel }}
@@ -168,6 +160,14 @@ Port {{ opensshd_Port }}
 {% else %}
 {% for port in opensshd_Port %}
 Port {{ port }}
+{% endfor %}
+{% endif %}
+
+{% if opensshd_ListenAddress is string %}
+ListenAddress {{ opensshd_ListenAddress }}
+{% else %}
+{% for address in opensshd_ListenAddress %}
+ListenAddress {{ address }}
 {% endfor %}
 {% endif %}
 
