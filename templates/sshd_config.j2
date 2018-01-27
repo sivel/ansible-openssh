@@ -120,13 +120,6 @@ LogLevel {{ opensshd_LogLevel }}
 MACs {{ opensshd_MACs|join(',') }}
 {% endif %}
 
-{% for match in opensshd_Match.items() %}
-Match {{ match.type }} {{ match.name }}
-{% for key, value in match.config.items() %}
-    {{ key }} {{ value }}
-{% endfor %}
-{% endfor %}
-
 MaxAuthTries {{ opensshd_MaxAuthTries }}
 
 {% if opensshd_MaxSessions is defined %}
@@ -222,3 +215,10 @@ X11Forwarding {{ opensshd_X11Forwarding }}
 X11UseLocalhost {{ opensshd_X11UseLocalhost }}
 
 XAuthLocation {{ opensshd_XAuthLocation }}
+
+{% for match in opensshd_Match %}
+Match {{ match.type }} {{ match.name }}
+{% for key, value in match.config.items() %}
+    {{ key }} {{ value }}
+{% endfor %}
+{% endfor %}
